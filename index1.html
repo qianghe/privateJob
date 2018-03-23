@@ -4,17 +4,23 @@
     <meta charset="utf-8">
     <!--ues css-->
     <link rel="stylesheet" type="text/css" href="index1.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="star.css" />
     <title>Loving Tennis</title>
   </head>
   <body>
+    <!--header section-->
     <div class="header">
+      <!--header title-->
       <h1>Loving Tennis</h1>
+      <!--header menus-->
       <ul>
         <li><a href="#home" name="1F">Home</a></li>
         <li><a href="#feedback" name="2F">Feedback</a></li>
         <li><a href="#sourcelog" name="3F">SourceLog</a></li>
       </ul>
     </div>
+    <!--home section-->
     <section id="home">
       <h1>My passion for this website</h1>
       <div>
@@ -28,20 +34,29 @@
         </p>
       </div>
     </section>
+    <!--sourcelog section-->
     <section id="sourcelog">
       <h1>FeedBack Form</h1>
       <form action="#">
         <div class="row">
-          <div class="label col-25">Your Name:<div>
-          <div class="col-75"><div>
+          <div class="label col-15">Your Name:</div>
+          <div class="col-85"><input id="username" /></div>
         </div>
         <div class="row">
-          <div class="label col-25">Score:<div>
-          <div class="col-75"><div>
+          <div class="label col-15">Score:</div>
+          <div class="star-rating">
+            <fieldset>
+              <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Outstanding">5 stars</label>
+              <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Very Good">4 stars</label>
+              <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Good">3 stars</label>
+              <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Poor">2 stars</label>
+              <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very Poor">1 star</label>
+            </fieldset>
+          </div>
         </div>
         <div class="row">
-          <div class="label col-25">Your Feedback:<div>
-          <div class="col-75"><div>
+          <div class="label col-15">Your Feedback:</div>
+          <div class="col-85"><textarea id="comment" cols="50" rows="5"></textarea></div>
         </div>
       </form>
     </section>
