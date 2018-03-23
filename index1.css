@@ -1,0 +1,79 @@
+/*set up background and font color*/
+body {
+  background-color: #6A8372;
+  color: #fff;
+}
+/*clear the default ul style*/
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/*set menu style*/
+.header > ul{
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  padding: 20px;
+  box-shadow: 0 0 2px 1px #fff;
+}
+
+.header > ul > li {
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+/*clear a link default style*/
+.header a:hover,
+.header a:visited,
+.header a:link,
+.header a:active {
+  text-decoration: none;
+  color: #fff;
+}
+/*set menu title style*/
+.header > h1 {
+  position: relative;
+  right: 10px;
+  text-align: right;
+  font-size: 50px;
+  font-style: oblique;
+}
+
+body > section {
+  margin-left: 300px;
+}
+/*set home part style*/
+#home {
+  margin-top: -80px;
+  margin-right: 200px;
+  padding-bottom: 20px;
+  border-bottom: 1px dotted #fff;
+}
+/*home part font style*/
+#home p {
+  font-style: italic;
+  line-height: 25px;
+}
+
+/*set home part relative position*/
+#home > div {
+  position: relative;
+  padding-left: 10px;
+}
+/*set the quota style use css3 Pseudo-element*/
+#home > div::before,
+#home > div::after {
+  content: "\"";
+  font-size: 30px;
+  position: absolute;
+}
+
+#home > div::before {
+  left: -20px;
+  top: -20px;
+}
+
+#home > div::after {
+  right: 0;
+}
