@@ -9,6 +9,18 @@ ul {
   padding-left: 0;
 }
 
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+body > section {
+  margin-left: 300px;
+  margin-right: 200px;
+  padding-bottom: 20px;
+  border-bottom: 1px dotted #fff;
+}
+
 /*set menu style*/
 .header > ul{
   position: absolute;
@@ -40,15 +52,9 @@ ul {
   font-style: oblique;
 }
 
-body > section {
-  margin-left: 300px;
-}
 /*set home part style*/
 #home {
   margin-top: -80px;
-  margin-right: 200px;
-  padding-bottom: 20px;
-  border-bottom: 1px dotted #fff;
 }
 /*home part font style*/
 #home p {
@@ -82,4 +88,31 @@ body > section {
 .video {
   display: inline-block;
   margin: 10px;
+/*set from style*/
+.row {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+.label {
+  text-align: right;
+}
+.col-15 {
+  width: 15%;
+}
+.col-85 {
+  width: 85%;
+}
+/*form contorls common css*/
+input[id="username"],
+textarea[id="comment"] {
+  margin-left: 20px;
+  border-radius: 2px;
+  border: none;
+  font-size: 20px;
+}
+/*set username input style*/
+input[id="username"] {
+  padding: 8px;
+  width: 200px;
 }
