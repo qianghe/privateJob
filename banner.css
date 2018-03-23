@@ -6,10 +6,24 @@
 }
 .banner .container {
   overflow-y: auto;
-  width: 2400px;
+  width: 4800px;
   height: 270px;
-  transition: transform .3s linear;
   font-size: 0;
+  animation: gallary 24s linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+}
+.banner .container:focus {
+  animation-play-state: paused;
+}
+@keyframes gallary {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-90%);
+  }
 }
 .banner .container span {
   display: inline-block;
@@ -20,7 +34,47 @@
   width: 100%;
   height: 100%;
 }
-.banner input[type="radio"] {
+.banner .btn {
+  font-family: 'FontAwesome' !important;
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  font-size: 40px;
+}
+.banner .btn i {
+  font-style: normal;
+}
+.banner .prev-btn {
+  left: 0;
+}
+.banner .next-btn {
+  right: 0;
+}
+/**以下是banner1的css样式**/
+.banner1 {
+  width: 480px;
+  height: 270px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 20px;
+}
+.banner1 .container {
+  overflow-y: auto;
+  width: 2400px;
+  height: 270px;
+  transition: transform .3s linear;
+  font-size: 0;
+}
+.banner1 .container span {
+  display: inline-block;
+  width: 480px;
+  height: 270px;
+}
+.banner1 .container img {
+  width: 100%;
+  height: 100%;
+}
+.banner1 input[type="radio"] {
   display: none;
 }
 #radio-1:checked ~ .container {
@@ -45,7 +99,7 @@
 #radio-5:checked ~ .points label:nth-child(5) {
   background: #fff;
 }
-.banner .points {
+.banner1 .points {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -53,7 +107,7 @@
   width: 100px;
   margin: auto;
 }
-.banner .points label {
+.banner1 .points label {
   display: inline-block;
   width: 8px;
   height: 8px;
@@ -61,3 +115,20 @@
   border: 1px solid #fff;
   background-color: transparent;
 }
+
+/**banner2的css样式**/
+.banner2 {
+  margin-top: 20px;
+}
+.banner2 .container {
+  animation: gallary1 24s steps(5);
+}
+@keyframes gallary1 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/****/
