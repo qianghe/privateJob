@@ -16,6 +16,7 @@ textarea:focus {
 
 body > section {
   margin-left: 300px;
+  margin-right: 200px;
   padding-bottom: 20px;
   border-bottom: 1px dotted #fff;
 }
@@ -54,7 +55,6 @@ body > section {
 /*set home part style*/
 #home {
   margin-top: -80px;
-  margin-right: 200px;
 }
 /*home part font style*/
 #home p {
