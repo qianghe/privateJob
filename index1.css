@@ -86,6 +86,10 @@ body > section {
   right: 0;
 }
 
+/** video **/
+.video {
+  display: inline-block;
+  margin: 10px;
 /*set from style*/
 .row {
   display: flex;
