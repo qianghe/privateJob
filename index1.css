@@ -10,7 +10,8 @@ ul {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+button:focus {
   outline: none;
 }
 
@@ -19,6 +20,7 @@ body > section {
   margin-right: 200px;
   padding-bottom: 20px;
   border-bottom: 1px dotted #fff;
+  min-width: 600px;
 }
 
 /*set menu style*/
@@ -111,4 +113,19 @@ textarea[id="comment"] {
 input[id="username"] {
   padding: 8px;
   width: 200px;
+}
+/*set submit button style*/
+button[id="submit"] {
+  width: 150px;
+  padding: 12px 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  background-color: #91B493;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+}
+button[id="submit"]:hover {
+  transform: scale(1.1);
 }
