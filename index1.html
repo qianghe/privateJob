@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <!--ues css-->
+    <!-- http://css.doyoe.com/ -->
     <link rel="stylesheet" type="text/css" href="index1.css" />
+    <link rel="stylesheet" type="text/css" href="banner.css" />
     <title>Loving Tennis</title>
   </head>
   <body>
@@ -12,7 +14,9 @@
       <ul>
         <li><a href="#home" name="1F">Home</a></li>
         <li><a href="#feedback" name="2F">Feedback</a></li>
-        <li><a href="#sourcelog" name="3F">SourceLog</a></li>
+        <li><a href="#gallery" name="3F">Gallery</a></li>
+        <li><a href="#video" name="4F">Video</a></li>
+        <li><a href="#sourcelog" name="5F">SourceLog</a></li>
       </ul>
     </div>
     <section id="home">
@@ -26,6 +30,68 @@
           information of those male and female awesome players, teaching video for all those skills.
           This website also provide basic test based on NTRP tennis rating system.
         </p>
+      </div>
+    </section>
+    <section id="gallery">
+      <h1>Photo Gallery</h1>
+      <div class="banner">
+        <input type="radio" id="radio-1" name="banner" checked>
+        <input type="radio" id="radio-2" name="banner">
+        <input type="radio" id="radio-3" name="banner">
+        <input type="radio" id="radio-4" name="banner">
+        <input type="radio" id="radio-5" name="banner">
+        <div class="container">
+          <span><img src="./Materials/BIT/bit1.jpg" alt=""></span>
+          <span><img src="./Materials/BIT/bit2.jpg" alt=""></span>
+          <span><img src="./Materials/BIT/bit3.jpg" alt=""></span>
+          <span><img src="./Materials/BIT/bit4.jpg" alt=""></span>
+          <span><img src="./Materials/BIT/bit5.jpg" alt=""></span>
+        </div>
+        <div class="points">
+          <label for="radio-1"></label>
+          <label for="radio-2"></label>
+          <label for="radio-3"></label>
+          <label for="radio-4"></label>
+          <label for="radio-5"></label>
+        </div>
+      </div>
+    </section>
+    <section id="video">
+      <h1>Video</h1>
+      <!-- https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Using_HTML5_audio_and_video  -->
+      <div class="video-group">
+        <div class="video">
+          <video controls autoplay>
+            <source src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" type="video/ogg">
+            <source src="foo.mp4" type="video/mp4">
+              你的浏览器不支持 <code>video</code> 标签.
+          </video>
+          <p>自动播放，带控制条，不循环播放视频播放</p>
+        </div>
+        <div class="video">
+          <video controls autoplay loop>
+            <source src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" type="video/ogg">
+            <source src="foo.mp4" type="video/mp4">
+              你的浏览器不支持 <code>video</code> 标签.
+          </video>
+          <p>自动播放，带控制条，循环播放视频播放</p>
+        </div>
+        <div class="video">
+          <video controls>
+            <source src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" type="video/ogg">
+            <source src="foo.mp4" type="video/mp4">
+              你的浏览器不支持 <code>video</code> 标签.
+          </video>
+          <p>不自动播放，带控制条，不循环播放视频播放</p>
+        </div>
+        <div class="video">
+          <video autoplay loop>
+            <source src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" type="video/ogg">
+            <source src="foo.mp4" type="video/mp4">
+              你的浏览器不支持 <code>video</code> 标签.
+          </video>
+          <p>自动播放，不带控制条，循环播放视频播放</p>
+        </div>
       </div>
     </section>
     <section id="sourcelog">

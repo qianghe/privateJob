@@ -77,3 +77,9 @@ body > section {
 #home > div::after {
   right: 0;
 }
+
+/** video **/
+.video {
+  display: inline-block;
+  margin: 10px;
+}
