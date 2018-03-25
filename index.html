@@ -16,9 +16,8 @@
       <!--header title-->
       <h1>Loving Tennis</h1>
       <!--header menus-->
-      <ul>
+      <ul class="anchorPoints">
         <li><a href="#home" name="1F">Home</a></li>
-        <li><a href="#feedback" name="2F">Feedback</a></li>
         <li><a href="#gallery" name="3F">Gallery</a></li>
         <li><a href="#video" name="4F">Video</a></li>
         <li><a href="#feedback" name="5F">Feedback</a></li>
@@ -100,7 +99,7 @@
     <section id="video">
       <h1>Video</h1>
       <!-- https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Using_HTML5_audio_and_video  -->
-      <div class="video-group">
+      <!-- <div class="video-group">
         <div class="video">
           <video controls autoplay>
             <source src="video/movie.ogg" type="video/ogg">
@@ -133,14 +132,14 @@
           </video>
           <p>自动播放，不带控制条，循环播放视频播放</p>
         </div>
-      </div>
+      </div> -->
     </section>
     <!--feedback form-->
     <section id="feedback">
       <h1>FeedBack Form</h1>
       <form>
         <div class="row">
-          <div class="label col-15">Your Name:</div>
+          <div class="label col-15">Name:</div>
           <div class="col-85"><input id="username" /></div>
         </div>
         <div class="row">
@@ -156,7 +155,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="label col-15">Your Feedback:</div>
+          <div class="label col-15">Feedback:</div>
           <div class="col-85"><textarea id="comment" cols="50" rows="5"></textarea></div>
         </div>
         <div class="row">
@@ -184,4 +183,151 @@
       Copyright © 2018 This website is developed by Yihua Liang u6487831
     </section>
   </body>
+  <script>
+    //动画兼容
+    window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame    ||
+        window.oRequestAnimationFrame      ||
+        window.msRequestAnimationFrame     ||
+        function( callback ){
+        window.setTimeout(callback, 1000 / 60);
+      };
+    })();
+    window.cancelAnimationFrame = (function () {
+        return window.cancelAnimationFrame ||
+                window.webkitCancelAnimationFrame ||
+                window.mozCancelAnimationFrame ||
+                window.oCancelAnimationFrame ||
+                function (timer) {
+                    window.clearTimeout(timer);
+                };
+    })();
+
+    var anchorTops = [];
+    var anchorNames= [];
+    var distance = 0;
+    var special = false;
+    var $anchors = document.querySelector('.anchorPoints');
+    window.onload = function() {
+      //页面初次加载，如果url中有#锚点，跳转到指定位置
+      initAnchors();
+      special = true;
+      scrollToAnchor();
+    }
+
+    var curHash = '';
+    function debounce(fn, wait) {
+      var timeout = null;
+      return function() {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(fn, wait);
+      }
+    }
+
+    function handle() {
+      var scrollTop = document.documentElement.scrollTop;
+
+      anchorTops.some((top, index) => {
+        console.log('some', top, scrollTop);
+        if (top > scrollTop) {
+          curHash = anchorNames[index - 1];
+          console.log('handle', special, scrollTop - distance);
+          if (special && Math.abs(scrollTop - distance) <= 0.46 ) {
+            curHash = '#sourcelog';
+          }
+          changeActiveLink(curHash);
+          special = false;
+          return true;
+        }
+        return false;
+      });
+    }
+    window.addEventListener('scroll', debounce(handle, 500), false);
+    //单击事件高于hashchange事件 事件委托
+    var cancel = false;
+    $anchors.addEventListener('click', function(e) {
+      var $dom = e.target;
+      if ($dom.tagName.toLowerCase() === 'a') {
+          var nextHash = $dom.getAttribute('href');
+          special = true;
+          scrollToAnchor(nextHash);
+      }
+    }, false);
+    function initAnchors() {
+      var $links = $anchors.querySelectorAll('a');
+      var links = Array.prototype.slice.call($links);
+      distance = document.documentElement.offsetHeight - document.documentElement.clientHeight;
+
+      links.forEach(link => {
+        var hash = link.getAttribute('href');
+        var dom = document.querySelector(hash);
+
+        if (dom) {
+          anchorTops.push(dom.offsetTop - 30);
+          anchorNames.push(hash);
+        }
+      });
+      console.log(anchorTops, anchorNames);
+    }
+    function changeActiveLink(hash) {
+      var $links = $anchors.querySelectorAll('a');
+      var links = Array.prototype.slice.call($links);
+      var link = (link = links.filter(link => link.getAttribute('href') === hash)) ? link[0] : null;
+      if (link) {
+        links.map(link => link.className = '');
+        link.className = 'active';
+      }
+    }
+
+    var timestamp = 0;
+
+    function scrollToAnchor(nextHash) {
+      var hash = nextHash || window.location.hash;
+      var dom = document.getElementById(hash.split('#')[1]);
+      // changeActiveLink(hash);
+      //锚点不存在
+      if (!dom) return;
+      var docScrollTop = document.documentElement.scrollTop;
+      timestamp = new Date().getTime()
+
+      var direction = docScrollTop > dom.offsetTop ? 'up' : 'down';
+      console.log(docScrollTop, dom.offsetTop);
+      animateScrollToAnchor(docScrollTop, dom.offsetTop , direction);
+    }
+
+    //滑动缓动动画
+    function animateScrollToAnchor(start, stop, direction) {
+      // var transition = start + 10; //步进为10
+      var time = new Date().getTime();
+      var transition = easeIn(time - timestamp, start, stop - start, 1000);
+
+      if (direction === 'down' && transition > stop) {
+        transition = stop;
+      } else if (direction === 'up' && transition < stop) {
+        transition = stop;
+      }
+      // 缓动方法
+      window.requestAnimationFrame(function(){
+          document.documentElement.scrollTop = transition; // 当前示例页面，滚动条在body，所以滚动body
+          // 滚动到预定位置则结束
+          if(transition == stop){
+            return;
+          }
+          animateScrollToAnchor(transition, stop, direction); // 只要还符合缓动条件，则递归调用
+      });
+    }
+    /*
+     * Tween.js
+     * t: current time（当前时间）；
+     * b: beginning value（初始值）；
+     * c: change in value（变化量）；
+     * d: duration（持续时间）。
+     * you can visit 'http://easings.net/zh-cn' to get effect
+    */
+    function easeIn (t, b, c, d) {
+      return c * (t /= d) * t + b;
+    }
+  </script>
 </html>

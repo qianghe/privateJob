@@ -47,6 +47,10 @@ body > section {
   font-size: 23px;
   margin-bottom: 20px;
 }
+
+.anchorPoints a.active {
+  color: #FBE251;
+}
 /*set menu title style*/
 .header > h1 {
   position: relative;
