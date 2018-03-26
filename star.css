@@ -39,3 +39,7 @@
   position: relative;
   top: 2px;
 }
+
+.star-rating input[type="radio"] {
+  visibility: hidden;
+}

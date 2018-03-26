@@ -99,7 +99,7 @@
     <section id="video">
       <h1>Video</h1>
       <!-- https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Using_HTML5_audio_and_video  -->
-      <!-- <div class="video-group">
+      <div class="video-group">
         <div class="video">
           <video controls autoplay>
             <source src="video/movie.ogg" type="video/ogg">
@@ -132,7 +132,7 @@
           </video>
           <p>自动播放，不带控制条，循环播放视频播放</p>
         </div>
-      </div> -->
+      </div>
     </section>
     <!--feedback form-->
     <section id="feedback">
@@ -230,14 +230,12 @@
       var scrollTop = document.documentElement.scrollTop;
 
       anchorTops.some((top, index) => {
-        console.log('some', top, scrollTop);
         if (top > scrollTop) {
           curHash = anchorNames[index - 1];
-          console.log('handle', special, scrollTop - distance);
-          if (special && Math.abs(scrollTop - distance) <= 0.46 ) {
-            curHash = '#sourcelog';
-          }
-          changeActiveLink(curHash);
+          // if (special && Math.abs(scrollTop - distance) <= 0.46 ) {
+          //   curHash = '#sourcelog';
+          // }
+          if (!special) changeActiveLink(curHash);
           special = false;
           return true;
         }
@@ -246,15 +244,17 @@
     }
     window.addEventListener('scroll', debounce(handle, 500), false);
     //单击事件高于hashchange事件 事件委托
-    var cancel = false;
+
     $anchors.addEventListener('click', function(e) {
       var $dom = e.target;
       if ($dom.tagName.toLowerCase() === 'a') {
           var nextHash = $dom.getAttribute('href');
           special = true;
+          changeActiveLink(nextHash)
           scrollToAnchor(nextHash);
       }
     }, false);
+
     function initAnchors() {
       var $links = $anchors.querySelectorAll('a');
       var links = Array.prototype.slice.call($links);
@@ -269,7 +269,6 @@
           anchorNames.push(hash);
         }
       });
-      console.log(anchorTops, anchorNames);
     }
     function changeActiveLink(hash) {
       var $links = $anchors.querySelectorAll('a');
@@ -282,7 +281,6 @@
     }
 
     var timestamp = 0;
-
     function scrollToAnchor(nextHash) {
       var hash = nextHash || window.location.hash;
       var dom = document.getElementById(hash.split('#')[1]);
@@ -293,7 +291,6 @@
       timestamp = new Date().getTime()
 
       var direction = docScrollTop > dom.offsetTop ? 'up' : 'down';
-      console.log(docScrollTop, dom.offsetTop);
       animateScrollToAnchor(docScrollTop, dom.offsetTop , direction);
     }
 
